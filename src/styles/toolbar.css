@@ -1,0 +1,11 @@
+@import './variables.css';
+
+.layout__toolbar {
+  width: 100%;
+  height: fit-content;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.4rem;
+  background-color: #1234;
+}

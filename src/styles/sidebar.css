@@ -1,0 +1,6 @@
+@import './variables.css';
+
+.layout__sidebar {
+  width: 25rem;
+  background-color: var(--gray100);
+}

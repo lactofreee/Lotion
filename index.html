@@ -7,7 +7,39 @@
     <title>lotion</title>
   </head>
   <body>
-    <div></div>
+    <div id="wrapper__div" class="wrapper__div">
+      <aside id="layout__sidebar" class="layout__sidebar">
+        <div id="sidebar__space-wrapper" class="sidebar__space-wrapper">
+          <h2 id="sidebar__space-name" class="sidebar__space-name">길동의 워크 스페이스</h2>
+          <button id="sidebar__create-document--button" class="sidebar__create-document--button">
+            <img src="./src/asset/sideBar-hide.svg" alt="사이드 메뉴 숨기기 버튼"/>
+          </button>
+          <button id="sidebar__document-hide--button" class="sidebar__document-hide--button">
+            <img src="./src/asset/edit.svg" alt="사이드 메뉴 숨기기 버튼"/>
+          </button>
+        </div>
+        <nav id="sidebar__doucument-list--nav" class="sidebar__doucument-list--nav">
+          <ul id="sidebar__doucument-list--ul" class="sidebar__doucument-list--ul">
+            <li>문서 목록</li>
+          </ul>
+        </nav>
+        <nav id="sidebar__delete-list--nav" class="sidebar__delete-list--nav">
+          <ul id="sidebar__delete-list--ul" class="sidebar__delete-list--ul">
+            <li>삭제된 문서 목록</li>
+          </ul>
+        </nav>
+      </aside>
+      <main id="layout__editor" class="layout__editor">
+        <header id="layout__toolbar" class="layout__toolbar">
+          <nav id="layout__toolbar--breadcrumb" class="layout__toolbar--breadcrumb">breadCrumb</nav>
+          <button id="layout__toolbar--delete-button" class="layout__toolbar--delete-button">삭제</button>
+        </header>
+        <article id="layout__editor--contents" class="layout__editor--contents">
+          <h1 id="layout__editor--title" class="layout__editor--title">제목 없음</h1>
+          <textarea id="layout__editor--content" class="layout__editor--content">내용</textarea>
+        </article>
+      </main>
+    </div>
     <script type="module" src="/src/app.ts"></script>
   </body>
 </html>

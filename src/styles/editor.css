@@ -1,0 +1,6 @@
+@import './variables.css';
+
+.layout__editor {
+  width: 100%;
+  height: 100%;
+}
