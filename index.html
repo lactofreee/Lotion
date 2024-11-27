@@ -11,32 +11,78 @@
       <aside id="layout__sidebar" class="layout__sidebar">
         <div id="sidebar__space-wrapper" class="sidebar__space-wrapper">
           <h2 id="sidebar__space-name" class="sidebar__space-name">길동의 워크 스페이스</h2>
-          <button id="sidebar__create-document--button" class="sidebar__create-document--button">
-            <img src="./src/asset/sideBar-hide.svg" alt="사이드 메뉴 숨기기 버튼"/>
-          </button>
-          <button id="sidebar__document-hide--button" class="sidebar__document-hide--button">
-            <img src="./src/asset/edit.svg" alt="사이드 메뉴 숨기기 버튼"/>
-          </button>
+          <div id="sidebar__button--wrapper" class="sidebar__button--wrapper">
+            <button id="sidebar__document-hide--button" class="sidebar__document-hide--button">
+              <img src="./src/asset/sideBar-hide.svg" alt="사이드 메뉴 숨기기 버튼"/>
+            </button>
+            <button id="sidebar__create-document--button" class="sidebar__create-document--button">
+              <img src="./src/asset/edit.svg" alt="새 문서 생성 버튼"/>
+            </button>
+          </div>
         </div>
         <nav id="sidebar__doucument-list--nav" class="sidebar__doucument-list--nav">
           <ul id="sidebar__doucument-list--ul" class="sidebar__doucument-list--ul">
-            <li>문서 목록</li>
+            <li id="sidebar__doucument-list--li" class="sidebar__doucument-list--li doucument-list--hover">
+              <button id="doucument-list__dropdown--button" class="doucument-list__dropdown--button">
+                <img src="./src/asset/hover-dropdown.svg" alt="hover 드롭다운 버튼"/>
+              </button>
+              <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#">hover 목록</a>
+              <button id="doucument-list__create-document--button" class="doucument-list__create-document--button">
+                <img src="./src/asset/plus.svg" alt="하위 문서 추가 버튼"/>
+              </button>
+            </li>
+            <li id="sidebar__doucument-list--li" class="sidebar__doucument-list--li doucument-list--active">
+              <button id="doucument-list__dropdown--button" class="doucument-list__dropdown--button">
+                <img src="./src/asset/active-dropdown.svg" alt="active 드롭다운 버튼"/>
+              </button>
+              <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#">active 목록</a>
+              <button id="doucument-list__create-document--button" class="doucument-list__create-document--button">
+                <img src="./src/asset/plus.svg" alt="하위 문서 추가 버튼"/>
+              </button>
+            </li>
           </ul>
         </nav>
         <nav id="sidebar__delete-list--nav" class="sidebar__delete-list--nav">
           <ul id="sidebar__delete-list--ul" class="sidebar__delete-list--ul">
-            <li>삭제된 문서 목록</li>
+            <li id="sidebar__delete-list--li" class="sidebar__delete-list--li">
+              <button >
+                <img src="./src/asset/trash-can.svg" alt="휴지통 목록"/>
+              </button>
+              <button id="delete-list__open--button" class="delete-list__open--button">휴지통</button>
+            </li>
           </ul>
         </nav>
       </aside>
       <main id="layout__editor" class="layout__editor">
         <header id="layout__toolbar" class="layout__toolbar">
-          <nav id="layout__toolbar--breadcrumb" class="layout__toolbar--breadcrumb">breadCrumb</nav>
-          <button id="layout__toolbar--delete-button" class="layout__toolbar--delete-button">삭제</button>
+          <nav id="layout__toolbar--breadcrumb" class="layout__toolbar--breadcrumb">
+            <ul id="breadcrumb__wrapper" class="breadcrumb__wrapper">
+              <li id="breadcrumb__path" class="breadcrumb__path">
+                <a href="#" id="breadcrumb__path--link" class="breadcrumb__path--link">root document</a>
+              </li>
+              <img id="breadcrumb__path--slash" class="breadcrumb__path--slash" src="./src/asset/slash.svg" alt="경로 구분용 슬래시 아이콘">
+              <li id="breadcrumb__path" class="breadcrumb__path">
+                <a href="#" id="breadcrumb__path--link" class="breadcrumb__path--link">parant document</a>
+              </li>
+              <img id="breadcrumb__path--slash" class="breadcrumb__path--slash" src="./src/asset/slash.svg" alt="경로 구분용 슬래시 아이콘">
+              <li id="breadcrumb__path" class="breadcrumb__path">
+                <a href="#top" id="breadcrumb__path--link" class="breadcrumb__path--link">current document</a>
+              </li>
+            </ul>
+            
+          </nav>
+          <div id="toolbar__button-wrapper" class="toolbar__button-wrapper">
+            <button id="toolbar__theme-toggle--button" class="toolbar__theme-toggle--button">light</button>
+            <button id="toolbar__delete--button" class="toolbar__delete--button">
+              <img src="./src/asset/trash-can.svg" alt="휴지통 버튼"/>
+            </button>
+          </div>
         </header>
         <article id="layout__editor--contents" class="layout__editor--contents">
-          <h1 id="layout__editor--title" class="layout__editor--title">제목 없음</h1>
-          <textarea id="layout__editor--content" class="layout__editor--content">내용</textarea>
+          <h1 id="layout__editor--title" class="layout__editor--title">
+            <textarea placeholder="제목 없음" id="editor__title--textarea" class="editor__title--textarea"></textarea>
+          </h1>
+          <textarea placeholder="crtl + s를 눌러 저장하세요." id="layout__editor--content" class="layout__editor--content"></textarea>
         </article>
       </main>
     </div>

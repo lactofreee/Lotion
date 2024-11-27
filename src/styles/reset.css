@@ -2,10 +2,14 @@
 
 html {
   font-size: 62.5%;
+  scroll-behavior: smooth;
 }
 
 body {
   font-size: 1.4rem;
+  color: var(--black300);
+  background-color: var(--white);
+  overflow: hidden;
 }
 
 html,
@@ -138,14 +142,6 @@ a {
   color: var(--black300);
 }
 
-body {
-  width: 100%;
-  height: 100vh;
-  background-color: var(--white);
-  color: var(--black300);
-  display: flex;
-}
-
 textarea {
   resize: none;
   overflow-y: hidden;
@@ -184,10 +180,26 @@ input:focus {
   box-shadow: none;
   border: none;
 }
+
 button {
   margin: 0;
   padding: 0;
   border: none;
-  background-color: inherit;
+  background-color: transparent;
   cursor: pointer;
+}
+
+.wrapper__div button {
+  padding: 0.2rem;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.wrapper__div button:hover {
+  background-color: var(--bg200);
+}
+
+a {
+  display: inline-block;
+  width: 100%;
 }
