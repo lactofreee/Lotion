@@ -7,5 +7,37 @@
   justify-content: space-between;
   align-items: center;
   padding: 1rem 1.4rem;
-  background-color: #1234;
+  position: sticky;
+  top: 0;
+  left: 0;
+}
+
+.breadcrumb__wrapper {
+  display: flex;
+  justify-content: space-around;
+  gap: 0.6rem;
+}
+
+.breadcrumb__path--link {
+  display: inline-block;
+  padding: 0.2rem 0.4rem;
+  border-radius: 4px;
+  transition: .4s;
+}
+
+.breadcrumb__path--link:hover {
+  background-color: var(--bg200);
+}
+
+.toolbar__button-wrapper {
+  display: flex;
+  gap: 0.4rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.toolbar__theme-toggle--button {
+  padding: 0.4rem;
+  border-radius: 4px;
+  background-color: var(--bg200);
 }

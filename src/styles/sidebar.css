@@ -3,4 +3,125 @@
 .layout__sidebar {
   width: 25rem;
   background-color: var(--gray100);
+  position: relative;
+}
+
+.sidebar__space-wrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem 1.6rem;
+}
+
+.sidebar__space-name {
+  width: 100%;
+  padding: 0.4rem;
+  border-radius: 4px;
+  transition: 0.4s;
+}
+
+.sidebar__space-name:hover {
+  background-color: var(--bg100);
+}
+
+.sidebar__button--wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* 문서 목록 (document-list) */
+.sidebar__doucument-list--nav {
+  width: 100%;
+  padding-inline: 0.4rem;
+}
+
+.sidebar__doucument-list--ul {
+  width: 100%;
+}
+
+.sidebar__doucument-list--li {
+  display: flex;
+  gap: 0.2rem;
+  align-items: center;
+  padding: 0.5rem 0.8rem;
+  border-radius: 0.4rem;
+  position: relative;
+}
+
+.doucument-list__dropdown--button {
+  padding: 0.2rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+.doucument-list__dropdown--button:hover {
+  background-color: var(--bg200);
+}
+.doucument-list__dropdown--button:active {
+  transform: rotateZ(90deg);
+}
+
+/* active 클래스 */
+.doucument-list--hover {
+  background-color: var(--bg100);
+}
+
+/* hover 클래스 */
+.doucument-list--active {
+  background-color: var(--bg200);
+  color: var(--black400);
+}
+
+/* 하위 문서 추가 버튼 */
+.doucument-list__create-document--button {
+  padding: 0.2rem;
+  border-radius: 4px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 0.4s;
+}
+
+
+/* 삭제된 문서 목록 */
+.sidebar__delete-list--nav {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  padding: 0.8rem 1.2rem;
+
+}
+
+.sidebar__delete-list--ul {
+  width: 100%;
+}
+
+.sidebar__delete-list--li {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+
+  padding: 0.2rem;
+  border-radius: 4px;
+}
+
+.sidebar__delete-list--li:hover {
+  background-color: var(--bg200);
+}
+
+.delete-list__open--button {
+  display: inline-block;
+  width: 100%;
+  text-align: left;
+
+  padding: 0.4rem;
+}
+
+.sidebar__delete-list--li button:hover {
+  background-color: transparent;
 }
