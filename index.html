@@ -12,10 +12,10 @@
         <div id="sidebar__space-wrapper" class="sidebar__space-wrapper">
           <h2 id="sidebar__space-name" class="sidebar__space-name">길동의 워크 스페이스</h2>
           <div id="sidebar__button--wrapper" class="sidebar__button--wrapper">
-            <button id="sidebar__document-hide--button" class="sidebar__document-hide--button">
+            <button data-tooltip="사이드바 닫기" data-tooltip-position="bottom" id="sidebar__document-hide--button" class="sidebar__document-hide--button">
               <img src="./src/asset/sideBar-hide.svg" alt="사이드 메뉴 숨기기 버튼"/>
             </button>
-            <button id="sidebar__create-document--button" class="sidebar__create-document--button">
+            <button data-tooltip="새 페이지 만들기" data-tooltip-position="bottom" id="sidebar__create-document--button" class="sidebar__create-document--button">
               <img src="./src/asset/edit.svg" alt="새 문서 생성 버튼"/>
             </button>
           </div>
@@ -27,7 +27,7 @@
                 <img src="./src/asset/hover-dropdown.svg" alt="hover 드롭다운 버튼"/>
               </button>
               <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#">hover 목록</a>
-              <button id="doucument-list__create-document--button" class="doucument-list__create-document--button">
+              <button data-tooltip="하위 문서 추가" data-tooltip-position="bottom" id="doucument-list__create-document--button" class="doucument-list__create-document--button">
                 <img src="./src/asset/plus.svg" alt="하위 문서 추가 버튼"/>
               </button>
             </li>
@@ -36,7 +36,7 @@
                 <img src="./src/asset/active-dropdown.svg" alt="active 드롭다운 버튼"/>
               </button>
               <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#">active 목록</a>
-              <button id="doucument-list__create-document--button" class="doucument-list__create-document--button">
+              <button data-tooltip="하위 문서 추가" data-tooltip-position="bottom" id="doucument-list__create-document--button" class="doucument-list__create-document--button">
                 <img src="./src/asset/plus.svg" alt="하위 문서 추가 버튼"/>
               </button>
             </li>
@@ -48,7 +48,7 @@
               <button >
                 <img src="./src/asset/trash-can.svg" alt="휴지통 목록"/>
               </button>
-              <button id="delete-list__open--button" class="delete-list__open--button">휴지통</button>
+              <button data-tooltip="삭제된 페이지 복원" data-tooltip-position="top" id="delete-list__open--button" class="delete-list__open--button">휴지통</button>
             </li>
           </ul>
         </nav>
@@ -72,8 +72,8 @@
             
           </nav>
           <div id="toolbar__button-wrapper" class="toolbar__button-wrapper">
-            <button id="toolbar__theme-toggle--button" class="toolbar__theme-toggle--button">light</button>
-            <button id="toolbar__delete--button" class="toolbar__delete--button">
+            <button data-tooltip="라이트/다크 모드" data-tooltip-position="left" id="toolbar__theme-toggle--button" class="toolbar__theme-toggle--button">light</button>
+            <button data-tooltip="휴지통으로 이동" data-tooltip-position="left" id="toolbar__delete--button" class="toolbar__delete--button">
               <img src="./src/asset/trash-can.svg" alt="휴지통 버튼"/>
             </button>
           </div>
