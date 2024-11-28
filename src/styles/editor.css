@@ -18,6 +18,11 @@
   overflow: hidden;
 }
 
+.layout__editor--title textarea{
+  max-height: 2.28rem;
+  overflow: hidden;
+}
+
 .editor__title--textarea {
   font-size: inherit;
   font-weight: inherit;
