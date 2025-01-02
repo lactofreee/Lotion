@@ -45,10 +45,22 @@
         <nav id="sidebar__delete-list--nav" class="sidebar__delete-list--nav">
           <ul id="sidebar__delete-list--ul" class="sidebar__delete-list--ul">
             <li id="sidebar__delete-list--li" class="sidebar__delete-list--li">
-              <button >
+              <button id="sidebar__delete-list--button" class="sidebar__delete-list--button">
                 <img src="./src/asset/trash-can.svg" alt="휴지통 목록"/>
               </button>
               <button data-tooltip="삭제된 페이지 복원" data-tooltip-position="top" id="delete-list__open--button" class="delete-list__open--button">휴지통</button>
+              <ul id="delete-list__modal" class="delete-list__modal">
+                <li id="delete-list__modal-title" class="delete-list__modal-title">삭제된 페이지 목록</li>
+                <li id="delete-list__modal-item" class="delete-list__modal-item">
+                  <div id="delete-list__modal-item--wrapper" class="delete-list__modal-item--wrapper">
+                    <p id="modal-item__name" class="modal-item__name">삭제된 아이템</p>
+                    <p id="modal-item__path" class="modal-item__path">경로</p>
+                  </div>
+                  <button id="modal-item__delete-button" class="modal-item__delete-button">
+                    <img src="./src/asset/trash-can.svg" alt="즉시 삭제 버튼"/>
+                  </button>
+                </li> 
+              </ul>
             </li>
           </ul>
         </nav>
