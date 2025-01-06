@@ -61,7 +61,7 @@
 .doucument-list__dropdown--button:hover {
   background-color: var(--bg200);
 }
-.doucument-list__dropdown--button:active {
+.doucument-list__dropdown--button.active {
   transform: rotateZ(90deg);
 }
 

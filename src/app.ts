@@ -1,3 +1,4 @@
+import { setMenu } from './componets/sidebar/setMenu.ts';
 import { initTrashModal } from './layout/sidebar/trashList.ts';
 import { initDarkMode } from './layout/toolbar/toolbar.ts';
 
@@ -8,6 +9,8 @@ const App = (): void => {
   
   // 휴지통 목록 초기화
   initTrashModal();
+
+  setMenu()
 
 };
 
