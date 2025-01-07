@@ -12,12 +12,12 @@ export const createMenuEl = async (
     const li = document.createElement("li");
     li.id = "sidebar__doucument-list--li";
     li.className = "sidebar__doucument-list--li";
-    li.setAttribute("data-uid", docItem.uid)
+    li.setAttribute("data-uid", docItem.uid);
 
     const div = document.createElement("div");
     div.id = "document__list--wrapper";
     div.className = "document__list--wrapper";
-    
+
     // 첫 번째 <button>
     const dropdownButton = document.createElement("button");
     dropdownButton.id = "doucument-list__dropdown--button";
