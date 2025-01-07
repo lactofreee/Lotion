@@ -14,7 +14,6 @@ const App = (): void => {
   
   // 휴지통 목록 초기화
   initTrashModal();
-
   setMenu()
 
 };

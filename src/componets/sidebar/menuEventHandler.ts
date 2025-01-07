@@ -29,7 +29,7 @@ const menuActiveEventHandler = () => {
   const parentEl = document.getElementById("sidebar__doucument-list--ul");
 
   parentEl?.addEventListener("click", (event) => {
-    const dropDownButton = event.target?.closest(
+    const dropDownButton = (event.target as HTMLElement)?.closest(
       "#doucument-list__dropdown--button"
     );
 
