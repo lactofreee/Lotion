@@ -1,7 +1,7 @@
 import MainPage from "../pages/MainPage.js";
 import ErrorPage from "../pages/ErrorPage.js";
 import DocumentPage from "../pages/DocumentPage.js";
-import CreateDocModalPage from "../pages/CreateDocModalPage.js";
+import { showModal } from "../componets/createNewDoc/showModal.js";
 
 type RouteFunction = (param?: string) => void | Promise<void>;
 
@@ -23,7 +23,7 @@ const routes: Routes = {
   "/": MainPage,
   "/404": ErrorPage,
   "/:uid": DocumentPage,
-  "/create-new-doc": CreateDocModalPage,
+  "/create-new-doc": showModal,
 };
 
 // DocumentPage가 제대로 import 되어있는지 콘솔로 확인
@@ -124,11 +124,11 @@ interface Router {
 
 const createRouter = (type: "history" | "hash" = "history"): Router => {
   // 동적 라우터 오작동,,,ㅠㅠ으로 인해 테스트 코드 추가
-  const testPaths = ["/abc123", "/abc/123", "/", "/document-1"];
-  testPaths.forEach((path) => {
-    const uid = path.match(/^\/([^/]+)$/);
-    console.log(`Path: ${path}, Extracted UID:`, uid ? uid[1] : null);
-  });
+  // const testPaths = ["/abc123", "/abc/123", "/", "/document-1"];
+  // testPaths.forEach((path) => {
+  //   const uid = path.match(/^\/([^/]+)$/);
+  //   console.log(`Path: ${path}, Extracted UID:`, uid ? uid[1] : null);
+  // });
 
   const router = routerTypes[type];
   let rootElement: HTMLElement | null = null;
@@ -140,21 +140,23 @@ const createRouter = (type: "history" | "hash" = "history"): Router => {
   };
 
   const renderPage = async (path: string): Promise<void> => {
+    if (routes[path]) {
+      await routes[path]();
+      return;
+    }
+  
     // 동적 라우트 처리
     const uid = extractUid(path);
     if (uid && path !== "/404") {
-      // /404 경로는 제외
       const page = routes["/:uid"];
       if (page) {
         await page(uid);
         return;
       }
     }
-
-    // 일반 라우트 처리
-    const page = routes[path] || routes["/404"];
-    if (!page) return;
-    await page();
+  
+    // 404 처리
+    await routes["/404"]();
   };
 
   const handleRoute = (path: string): void => {
