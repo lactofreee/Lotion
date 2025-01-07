@@ -1,11 +1,10 @@
+import { getMenuList } from "../../api/sidebar/sidebarApi";
 import { createMenuEl } from "./createMenuEl";
-import {
-  menuActiveEventHandler,
-  menuHoverEventHandler,
-} from "./menuEventHandler";
+import { menuEventHandler } from "./menuEventHandler";
 
 export const setMenu = async () => {
-  createMenuEl();
-  menuHoverEventHandler();
-  menuActiveEventHandler();
+  const sidebarUlEl = document.getElementById("sidebar__doucument-list--ul");
+  const menuList = await getMenuList();
+  createMenuEl(sidebarUlEl, menuList);
+  menuEventHandler();
 };

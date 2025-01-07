@@ -13,6 +13,6 @@ export const buildMenuTree = (data: MenuItem[]): TreeNode[] => {
       nodes[item.parent_uid].children.push(nodes[item.uid]);
     }
   });
-
+  console.log(tree);
   return tree;
 };
