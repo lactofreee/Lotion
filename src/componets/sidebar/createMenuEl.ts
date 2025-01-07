@@ -1,9 +1,10 @@
-import { getMenuList } from "../../api/sidebar/sidebarApi";
 import { buildMenuTree } from "./buildMenuTree";
 
-export const createMenuEl = async () => {
-  const sidebarUlEl = document.getElementById("sidebar__doucument-list--ul");
-  const menuList = await getMenuList();
+export const createMenuEl = async (
+  parentEl: HTMLElement | null,
+  menuListItem: any
+) => {
+  const menuList = menuListItem;
   const menuTree = buildMenuTree(menuList);
 
   menuTree.forEach((docItem) => {
@@ -11,7 +12,12 @@ export const createMenuEl = async () => {
     const li = document.createElement("li");
     li.id = "sidebar__doucument-list--li";
     li.className = "sidebar__doucument-list--li";
+    li.setAttribute("data-uid", docItem.uid)
 
+    const div = document.createElement("div");
+    div.id = "document__list--wrapper";
+    div.className = "document__list--wrapper";
+    
     // 첫 번째 <button>
     const dropdownButton = document.createElement("button");
     dropdownButton.id = "doucument-list__dropdown--button";
@@ -26,7 +32,7 @@ export const createMenuEl = async () => {
     const link = document.createElement("a");
     link.id = "sidebar__doucument-list--link";
     link.className = "sidebar__doucument-list--link";
-    link.href = "#";
+    link.href = docItem.uid;
     link.textContent = docItem.title;
 
     // 두 번째 <button>
@@ -41,9 +47,11 @@ export const createMenuEl = async () => {
     addImg.alt = "하위 문서 추가 버튼";
     addButton.appendChild(addImg);
 
-    li.appendChild(dropdownButton);
-    li.appendChild(link);
-    li.appendChild(addButton);
-    sidebarUlEl?.appendChild(li);
+    div.appendChild(dropdownButton);
+    div.appendChild(link);
+    div.appendChild(addButton);
+    li.appendChild(div);
+
+    parentEl?.appendChild(li);
   });
 };
