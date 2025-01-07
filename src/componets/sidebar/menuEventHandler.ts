@@ -1,3 +1,4 @@
+import { showModal } from "../createNewDoc/showModal";
 import { createMenuEl } from "./createMenuEl";
 
 const menuHoverEventHandler = () => {
@@ -58,14 +59,23 @@ const menuActiveEventHandler = () => {
 };
 
 const createDocButtonHandler = () => {
-  const menuWrapper = document.getElementById("sidebar__doucument-list--ul");
-  const createDocButton = document.getElementById(
-    "sidebar__create-document--button"
-  );
+  const parentEl = document.getElementById("sidebar__doucument-list--ul");
 
-  createDocButton?.addEventListener("click", (event) => {
-    const parentLiEl = event.target?.closest("#sidebar__doucument-list--li");
-    console.log(parentLiEl);
+  parentEl?.addEventListener("click", (event) => {
+    const addButton = (event.target as HTMLElement).closest(
+      "#doucument-list__create-document--button"
+    );
+
+    if (addButton) {
+      const parentLi = (addButton as HTMLElement).closest(
+        ".sidebar__doucument-list--li"
+      );
+      const parentUid = parentLi?.getAttribute("data-uid");
+
+      if (parentUid) {
+        showModal(parentUid); // 모달 띄우기
+      }
+    }
   });
 };
 
