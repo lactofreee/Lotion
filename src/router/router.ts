@@ -23,7 +23,7 @@ const routes: Routes = {
   "/": MainPage,
   "/404": ErrorPage,
   "/:uid": DocumentPage,
-  "/create-new-doc": showModal,
+  "/:uid/newDoc": showModal,
 };
 
 // DocumentPage가 제대로 import 되어있는지 콘솔로 확인
@@ -133,29 +133,36 @@ const createRouter = (type: "history" | "hash" = "history"): Router => {
   const router = routerTypes[type];
   let rootElement: HTMLElement | null = null;
 
-  // URL에서 uid를 추출하는 함수
-  const extractUid = (path: string): string | null => {
-    const match = path.match(/^\/([^/]+)$/);
-    return match ? match[1] : null;
-  };
-
   const renderPage = async (path: string): Promise<void> => {
+    // "/:uid/create" 경로 매칭
+    const createMatch = path.match(/^\/([^/]+)\/newDoc$/);
+    if (createMatch) {
+      const uid = createMatch[1];
+      const page = routes["/:uid/newDoc"];
+      if (page) {
+        await page(uid); // showModal 함수 호출
+        return;
+      }
+    }
+
+    // "/:uid" 경로 매칭
+    const documentMatch = path.match(/^\/([^/]+)$/);
+    if (documentMatch) {
+      const uid = documentMatch[1];
+      const page = routes["/:uid"];
+      if (page) {
+        await page(uid); // DocumentPage 함수 호출
+        return;
+      }
+    }
+
+    // 정적 경로 처리
     if (routes[path]) {
       await routes[path]();
       return;
     }
-  
-    // 동적 라우트 처리
-    const uid = extractUid(path);
-    if (uid && path !== "/404") {
-      const page = routes["/:uid"];
-      if (page) {
-        await page(uid);
-        return;
-      }
-    }
-  
-    // 404 처리
+
+    // 404 페이지 처리
     await routes["/404"]();
   };
 

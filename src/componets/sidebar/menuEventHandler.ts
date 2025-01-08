@@ -46,7 +46,7 @@ const menuActiveEventHandler = () => {
         // const childDocs = createMenuEl(childDocsWrapper);
 
         const childDoc = document.createElement("p");
-        childDoc.innerText = "hello";
+        childDoc.textContent = "hello";
         childDocsWrapper.appendChild(childDoc);
 
         liEl.appendChild(childDocsWrapper);
@@ -73,7 +73,7 @@ const createDocButtonHandler = () => {
       const parentUid = parentLi?.getAttribute("data-uid");
 
       if (parentUid) {
-        showModal(parentUid); // 모달 띄우기
+        window.location.assign(`/${parentUid}/newDoc`);
       }
     }
   });
