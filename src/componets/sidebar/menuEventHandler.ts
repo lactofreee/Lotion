@@ -1,3 +1,4 @@
+import { postNewDoc } from "../../api/docApi/updatetDocApi";
 import { showModal } from "../createNewDoc/showModal";
 import { createMenuEl } from "./createMenuEl";
 
@@ -79,8 +80,18 @@ const createDocButtonHandler = () => {
   });
 };
 
+const createRootDocButtonHandler = () => {
+  const createButton = document.getElementById(
+    "sidebar__create-document--button"
+  );
+  createButton?.addEventListener("click", () => {
+    postNewDoc("root", "api-test", "wadawddwad");
+  });
+};
+
 export const menuEventHandler = () => {
   menuHoverEventHandler();
   menuActiveEventHandler();
   createDocButtonHandler();
+  createRootDocButtonHandler();
 };
