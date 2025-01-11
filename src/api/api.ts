@@ -1,7 +1,5 @@
 import { axiosInstance } from './axiosInstance';
 
-export const BASE_URL = "http://localhost:80";
-
 export interface TrashDocument {
  id: number;
  title: string;

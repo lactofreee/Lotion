@@ -6,17 +6,12 @@ import { showModal } from "../componets/createNewDoc/showModal.js";
 type RouteFunction = (param?: string) => void | Promise<void>;
 
 interface Routes {
-  [key: string]: RouteFunction;
+  [key: string]: RouteFunction; // key = 라우트 경로 / 값(RouteFunction) = 해당 경로의 핸들러 함수
 }
 
+// replace: true면 history.replaceState 사용, false면 pushState 사용할 플래그
 interface RouterOptions {
   replace?: boolean;
-}
-
-interface RouterType {
-  getPath: () => string;
-  updateURL: (url: string, options?: RouterOptions) => string;
-  setupListeners: (handleRoute: (path: string) => void) => void;
 }
 
 const routes: Routes = {
@@ -26,94 +21,48 @@ const routes: Routes = {
   "/:uid/newDoc": showModal,
 };
 
-// DocumentPage가 제대로 import 되어있는지 콘솔로 확인
+// DocumentPage가 제대로 import 되어있는지 콘솔로 확인 -> 추후 삭제 예정
 console.log("Routes configuration:", {
   mainPage: routes["/"],
   errorPage: routes["/404"],
   documentPage: routes["/:uid"],
 });
 
-const routerTypes: Record<string, RouterType> = {
-  history: {
-    getPath: () => window.location.pathname,
+const router = {
+  getPath: () => window.location.pathname, // 현재 URL의 pathname 가져오기
 
-    updateURL: (
-      url: string,
-      { replace = false }: RouterOptions = {}
-    ): string => {
-      const pathname = url.startsWith("http") ? new URL(url).pathname : url;
+  // URL을 업데이트하고 브라우저 히스토리 관리하는 메서드 (= 히스토리를 쌓을지 말지 결정하고 pathname 반환)
+  updateURL: (url: string, { replace = false }: RouterOptions = {}): string => {
+    const pathname = url.startsWith("http") ? new URL(url).pathname : url;
 
-      if (replace) {
-        history.replaceState({}, "", pathname);
-      } else {
-        history.pushState({}, "", pathname);
-      }
-      return pathname;
-    },
-
-    setupListeners: (handleRoute: (path: string) => void): void => {
-      const popstateHandler = () => handleRoute(routerTypes.history.getPath());
-      window.removeEventListener("popstate", popstateHandler);
-      window.addEventListener("popstate", popstateHandler);
-
-      const clickHandler = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        const link = target.closest<HTMLAnchorElement>("[data-link]");
-        if (link) {
-          e.preventDefault();
-          const path = routerTypes.history.updateURL(link.href);
-          handleRoute(path);
-        }
-      };
-      document.removeEventListener("click", clickHandler);
-      document.addEventListener("click", clickHandler);
-    },
+    if (replace) {
+      history.replaceState({}, "", pathname); // 에러 페이지, 리다이렉트 등 (히스토리 X)
+    } else {
+      history.pushState({}, "", pathname); // 내부 이동 (히스토리 쌓임)
+    }
+    return pathname;
   },
 
-  hash: {
-    getPath: (): string => {
-      const hash = window.location.hash.replace(/^#/, "");
-      return hash ? hash : "/";
-    },
+  setupListeners: (renderPage: (path: string) => void): void => {
+    // 뒤로가기 / 앞으로 가기 버튼을 누르면 실행 -> 브라우저는 URL만 변경해주고 내용을 불러오지 않기 때문에 따로 처리해줌
+    const popstateHandler = () => renderPage(router.getPath());
+    window.removeEventListener("popstate", popstateHandler);
+    window.addEventListener("popstate", popstateHandler);
 
-    updateURL: (
-      url: string,
-      { replace = false }: RouterOptions = {}
-    ): string => {
-      const hashPath = url.startsWith("http")
-        ? new URL(url).hash.replace(/^#/, "")
-        : url.replace(/^#/, "");
-      const targetHash = hashPath.startsWith("/") ? hashPath : `/${hashPath}`;
-
-      if (replace) {
-        const currentURL = new URL(window.location.href);
-        currentURL.hash = targetHash;
-        history.replaceState({}, "", currentURL.href);
-      } else {
-        window.location.hash = targetHash;
+    // 리액트의 Link 태그 => 링크 클릭시 이동을 처리
+    const clickHandler = (e: MouseEvent) => {
+      const target = e.target as HTMLElement;
+      // data-link 속성을 가진 가장 가까운 a태그를 찾음
+      const link = target.closest<HTMLAnchorElement>("[data-link]");
+      if (link) {
+        // 기본 동작을 막고 updateURL울 호출해서 업데이트 & 히스토리 관리
+        e.preventDefault();
+        const path = router.updateURL(link.href);
+        renderPage(path);
       }
-
-      return targetHash;
-    },
-
-    setupListeners: (handleRoute: (path: string) => void): void => {
-      const hashChangeHandler = () => handleRoute(routerTypes.hash.getPath());
-      window.removeEventListener("hashchange", hashChangeHandler);
-      window.addEventListener("hashchange", hashChangeHandler);
-
-      const clickHandler = (e: MouseEvent) => {
-        const target = e.target as HTMLElement;
-        const link = target.closest<HTMLAnchorElement>("[data-link]");
-        if (link) {
-          e.preventDefault();
-          const href = link.getAttribute("href") || "";
-          const path = routerTypes.hash.updateURL(href);
-          handleRoute(path);
-        }
-      };
-      document.removeEventListener("click", clickHandler);
-      document.addEventListener("click", clickHandler);
-    },
+    };
+    document.removeEventListener("click", clickHandler);
+    document.addEventListener("click", clickHandler);
   },
 };
 
@@ -122,16 +71,8 @@ interface Router {
   navigate: (url: string, options?: RouterOptions) => string;
 }
 
-const createRouter = (type: "history" | "hash" = "history"): Router => {
-  // 동적 라우터 오작동,,,ㅠㅠ으로 인해 테스트 코드 추가
-  // const testPaths = ["/abc123", "/abc/123", "/", "/document-1"];
-  // testPaths.forEach((path) => {
-  //   const uid = path.match(/^\/([^/]+)$/);
-  //   console.log(`Path: ${path}, Extracted UID:`, uid ? uid[1] : null);
-  // });
-
-  const router = routerTypes[type];
-  let rootElement: HTMLElement | null = null;
+const createRouter = (): Router => {
+  let rootElement: HTMLElement | null = null; // 루트 엘리먼트 지정용인데 현재 사용하지 않고 있음...
 
   const renderPage = async (path: string): Promise<void> => {
     // "/:uid/create" 경로 매칭
@@ -166,26 +107,10 @@ const createRouter = (type: "history" | "hash" = "history"): Router => {
     await routes["/404"]();
   };
 
-  const handleRoute = (path: string): void => {
-    const userStr = localStorage.getItem("user");
-    const user = userStr ? JSON.parse(userStr) : null;
-
-    if (path === "/profile" && !user) {
-      navigate("/login", { replace: true });
-      return;
-    }
-
-    if (path === "/login" && user) {
-      navigate("/", { replace: true });
-      return;
-    }
-
-    renderPage(path);
-  };
-
+  // 리액트의 useNavigate => URL을 변경하고 페이지를 렌더링
   const navigate = (url: string, options?: RouterOptions): string => {
     const path = router.updateURL(url, options);
-    handleRoute(path);
+    renderPage(path);
     return path;
   };
 
@@ -193,8 +118,8 @@ const createRouter = (type: "history" | "hash" = "history"): Router => {
     rootElement = document.getElementById(rootElementId);
     if (!rootElement) return;
 
-    router.setupListeners(handleRoute);
-    handleRoute(router.getPath());
+    router.setupListeners(renderPage); // 라우터 이벤트 리스너 설정
+    renderPage(router.getPath()); // 초기 페이지 렌더링
   };
 
   return { init, navigate };
