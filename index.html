@@ -10,18 +10,39 @@
     <div id="wrapper__div" class="wrapper__div">
       <aside id="layout__sidebar" class="layout__sidebar">
         <div id="sidebar__space-wrapper" class="sidebar__space-wrapper">
-          <h2 id="sidebar__space-name" class="sidebar__space-name">길동의 워크 스페이스</h2>
+          <h2 id="sidebar__space-name" class="sidebar__space-name">
+            <a href="/">길동의 워크 스페이스</a>
+          </h2>
           <div id="sidebar__button--wrapper" class="sidebar__button--wrapper">
-            <button data-tooltip="사이드바 닫기" data-tooltip-position="bottom" id="sidebar__document-hide--button" class="sidebar__document-hide--button">
-              <img src="./src/asset/sideBar-hide.svg" alt="사이드 메뉴 숨기기 버튼"/>
+            <button
+              data-tooltip="사이드바 닫기"
+              data-tooltip-position="bottom"
+              id="sidebar__document-hide--button"
+              class="sidebar__document-hide--button"
+            >
+              <img
+                src="./src/asset/sideBar-hide.svg"
+                alt="사이드 메뉴 숨기기 버튼"
+              />
             </button>
-            <button data-tooltip="새 페이지 만들기" data-tooltip-position="bottom" id="sidebar__create-document--button" class="sidebar__create-document--button">
-              <img src="./src/asset/edit.svg" alt="새 문서 생성 버튼"/>
+            <button
+              data-tooltip="새 페이지 만들기"
+              data-tooltip-position="bottom"
+              id="sidebar__create-document--button"
+              class="sidebar__create-document--button"
+            >
+              <img src="./src/asset/edit.svg" alt="새 문서 생성 버튼" />
             </button>
           </div>
         </div>
-        <nav id="sidebar__doucument-list--nav" class="sidebar__doucument-list--nav">
-          <ul id="sidebar__doucument-list--ul" class="sidebar__doucument-list--ul">
+        <nav
+          id="sidebar__doucument-list--nav"
+          class="sidebar__doucument-list--nav"
+        >
+          <ul
+            id="sidebar__doucument-list--ul"
+            class="sidebar__doucument-list--ul"
+          >
             <!-- <li id="sidebar__doucument-list--li" class="sidebar__doucument-list--li doucument-list--hover">
               <button id="doucument-list__dropdown--button" class="doucument-list__dropdown--button">
                 <img src="./src/asset/hover-dropdown.svg" alt="hover 드롭다운 버튼"/>
@@ -48,21 +69,47 @@
         <nav id="sidebar__delete-list--nav" class="sidebar__delete-list--nav">
           <ul id="sidebar__delete-list--ul" class="sidebar__delete-list--ul">
             <li id="sidebar__delete-list--li" class="sidebar__delete-list--li">
-              <button id="sidebar__delete-list--button" class="sidebar__delete-list--button">
-                <img src="./src/asset/trash-can.svg" alt="휴지통 목록"/>
+              <button
+                id="sidebar__delete-list--button"
+                class="sidebar__delete-list--button"
+              >
+                <img src="./src/asset/trash-can.svg" alt="휴지통 목록" />
               </button>
-              <button data-tooltip="삭제된 페이지 복원" data-tooltip-position="top" id="delete-list__open--button" class="delete-list__open--button">휴지통</button>
+              <button
+                data-tooltip="삭제된 페이지 복원"
+                data-tooltip-position="top"
+                id="delete-list__open--button"
+                class="delete-list__open--button"
+              >
+                휴지통
+              </button>
               <ul id="delete-list__modal" class="delete-list__modal">
-                <li id="delete-list__modal-title" class="delete-list__modal-title">삭제된 페이지 목록</li>
-                <li id="delete-list__modal-item" class="delete-list__modal-item">
-                  <div id="delete-list__modal-item--wrapper" class="delete-list__modal-item--wrapper">
-                    <p id="modal-item__name" class="modal-item__name">삭제된 아이템</p>
+                <li
+                  id="delete-list__modal-title"
+                  class="delete-list__modal-title"
+                >
+                  삭제된 페이지 목록
+                </li>
+                <li
+                  id="delete-list__modal-item"
+                  class="delete-list__modal-item"
+                >
+                  <div
+                    id="delete-list__modal-item--wrapper"
+                    class="delete-list__modal-item--wrapper"
+                  >
+                    <p id="modal-item__name" class="modal-item__name">
+                      삭제된 아이템
+                    </p>
                     <p id="modal-item__path" class="modal-item__path">경로</p>
                   </div>
-                  <button id="modal-item__delete-button" class="modal-item__delete-button">
-                    <img src="./src/asset/trash-can.svg" alt="즉시 삭제 버튼"/>
+                  <button
+                    id="modal-item__delete-button"
+                    class="modal-item__delete-button"
+                  >
+                    <img src="./src/asset/trash-can.svg" alt="즉시 삭제 버튼" />
                   </button>
-                </li> 
+                </li>
               </ul>
             </li>
           </ul>
@@ -70,34 +117,81 @@
       </aside>
       <main id="layout__editor" class="layout__editor">
         <header id="layout__toolbar" class="layout__toolbar">
-          <nav id="layout__toolbar--breadcrumb" class="layout__toolbar--breadcrumb">
+          <nav
+            id="layout__toolbar--breadcrumb"
+            class="layout__toolbar--breadcrumb"
+          >
             <ul id="breadcrumb__wrapper" class="breadcrumb__wrapper">
               <li id="breadcrumb__path" class="breadcrumb__path">
-                <a href="#" id="breadcrumb__path--link" class="breadcrumb__path--link">root document</a>
+                <a
+                  href="#"
+                  id="breadcrumb__path--link"
+                  class="breadcrumb__path--link"
+                  >root document</a
+                >
               </li>
-              <img id="breadcrumb__path--slash" class="breadcrumb__path--slash" src="./src/asset/slash.svg" alt="경로 구분용 슬래시 아이콘">
+              <img
+                id="breadcrumb__path--slash"
+                class="breadcrumb__path--slash"
+                src="./src/asset/slash.svg"
+                alt="경로 구분용 슬래시 아이콘"
+              />
               <li id="breadcrumb__path" class="breadcrumb__path">
-                <a href="#" id="breadcrumb__path--link" class="breadcrumb__path--link">parant document</a>
+                <a
+                  href="#"
+                  id="breadcrumb__path--link"
+                  class="breadcrumb__path--link"
+                  >parant document</a
+                >
               </li>
-              <img id="breadcrumb__path--slash" class="breadcrumb__path--slash" src="./src/asset/slash.svg" alt="경로 구분용 슬래시 아이콘">
+              <img
+                id="breadcrumb__path--slash"
+                class="breadcrumb__path--slash"
+                src="./src/asset/slash.svg"
+                alt="경로 구분용 슬래시 아이콘"
+              />
               <li id="breadcrumb__path" class="breadcrumb__path">
-                <a href="#top" id="breadcrumb__path--link" class="breadcrumb__path--link">current document</a>
+                <a
+                  href="#top"
+                  id="breadcrumb__path--link"
+                  class="breadcrumb__path--link"
+                  >current document</a
+                >
               </li>
             </ul>
-            
           </nav>
           <div id="toolbar__button-wrapper" class="toolbar__button-wrapper">
-            <button data-tooltip="라이트/다크 모드" data-tooltip-position="left" id="toolbar__theme-toggle--button" class="toolbar__theme-toggle--button">light</button>
-            <button data-tooltip="휴지통으로 이동" data-tooltip-position="left" id="toolbar__delete--button" class="toolbar__delete--button">
-              <img src="./src/asset/trash-can.svg" alt="휴지통 버튼"/>
+            <button
+              data-tooltip="라이트/다크 모드"
+              data-tooltip-position="left"
+              id="toolbar__theme-toggle--button"
+              class="toolbar__theme-toggle--button"
+            >
+              light
+            </button>
+            <button
+              data-tooltip="휴지통으로 이동"
+              data-tooltip-position="left"
+              id="toolbar__delete--button"
+              class="toolbar__delete--button"
+            >
+              <img src="./src/asset/trash-can.svg" alt="휴지통 버튼" />
             </button>
           </div>
         </header>
         <article id="layout__editor--contents" class="layout__editor--contents">
           <h1 id="layout__editor--title" class="layout__editor--title">
-            <textarea placeholder="제목 없음" id="editor__title--textarea" class="editor__title--textarea"></textarea>
+            <textarea
+              placeholder="제목 없음"
+              id="editor__title--textarea"
+              class="editor__title--textarea"
+            ></textarea>
           </h1>
-          <textarea placeholder="crtl + s를 눌러 저장하세요." id="layout__editor--content" class="layout__editor--content"></textarea>
+          <textarea
+            placeholder="crtl + s를 눌러 저장하세요."
+            id="layout__editor--content"
+            class="layout__editor--content"
+          ></textarea>
         </article>
       </main>
     </div>
