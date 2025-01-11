@@ -24,7 +24,7 @@ export const createMenuEl = async (
     dropdownButton.className = "doucument-list__dropdown--button";
 
     const dropdownImg = document.createElement("img");
-    dropdownImg.src = "./src/asset/hover-dropdown.svg";
+    dropdownImg.src = "/public/assets/hover-dropdown.svg";
     dropdownImg.alt = "hover 드롭다운 버튼";
     dropdownButton.appendChild(dropdownImg);
 
@@ -43,7 +43,7 @@ export const createMenuEl = async (
     addButton.setAttribute("data-tooltip-position", "bottom");
 
     const addImg = document.createElement("img");
-    addImg.src = "./src/asset/plus.svg";
+    addImg.src = "/public/assets/plus.svg";
     addImg.alt = "하위 문서 추가 버튼";
     addButton.appendChild(addImg);
 

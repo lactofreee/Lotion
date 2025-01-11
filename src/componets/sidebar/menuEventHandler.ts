@@ -1,3 +1,4 @@
+import { postNewDoc } from "../../api/docApi/updatetDocApi";
 import { showModal } from "../createNewDoc/showModal";
 import { createMenuEl } from "./createMenuEl";
 
@@ -46,7 +47,7 @@ const menuActiveEventHandler = () => {
         // const childDocs = createMenuEl(childDocsWrapper);
 
         const childDoc = document.createElement("p");
-        childDoc.innerText = "hello";
+        childDoc.textContent = "hello";
         childDocsWrapper.appendChild(childDoc);
 
         liEl.appendChild(childDocsWrapper);
@@ -73,9 +74,18 @@ const createDocButtonHandler = () => {
       const parentUid = parentLi?.getAttribute("data-uid");
 
       if (parentUid) {
-        showModal(parentUid); // 모달 띄우기
+        window.location.assign(`/${parentUid}/newDoc`);
       }
     }
+  });
+};
+
+const createRootDocButtonHandler = () => {
+  const createButton = document.getElementById(
+    "sidebar__create-document--button"
+  );
+  createButton?.addEventListener("click", () => {
+    postNewDoc("root", "api-test", "wadawddwad");
   });
 };
 
@@ -83,4 +93,5 @@ export const menuEventHandler = () => {
   menuHoverEventHandler();
   menuActiveEventHandler();
   createDocButtonHandler();
+  createRootDocButtonHandler();
 };
