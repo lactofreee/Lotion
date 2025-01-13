@@ -1,5 +1,6 @@
 import { fetchDocument } from '../api/api';
 import ErrorPage from './ErrorPage';
+import { deleteHandler } from '../layout/toolbar/deleteHandler';
 
 const DocumentPage = async (param?: string): Promise<void> => {
   const editorTitleTextarea = document.getElementById('editor__title--textarea') as HTMLTextAreaElement;
@@ -12,7 +13,7 @@ const DocumentPage = async (param?: string): Promise<void> => {
 
   if (!param) {
     console.error('문서 ID가 없습니다');
-    ErrorPage(); // 수정 : 직접 ErrorPage 컴포넌트 호출
+    ErrorPage();
     return;
   }
 
@@ -26,9 +27,12 @@ const DocumentPage = async (param?: string): Promise<void> => {
     // 편집 가능하도록 설정
     editorTitleTextarea.disabled = false;
     editorContentTextarea.disabled = false;
+
+    // 문서 삭제 핸들러 초기화
+    deleteHandler.init();
   } catch (error) {
     console.error('문서를 불러오는데 실패했습니다:', error);
-    ErrorPage(); // 직접 ErrorPage 컴포넌트 호출
+    ErrorPage();
   }
 };
 

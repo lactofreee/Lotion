@@ -1,7 +1,5 @@
 import { axiosInstance } from './axiosInstance';
 
-export const BASE_URL = "http://localhost:80";
-
 export interface TrashDocument {
  id: number;
  title: string;
@@ -26,7 +24,9 @@ export const fetchTrashList = async (): Promise<TrashDocument[]> => {
 
 export const deleteDocument = async (uid: number): Promise<any> => {
  try {
-   const { data } = await axiosInstance.get('/src/api/trashList.json');
+   const { data } = await axiosInstance.put(`/document/del/${uid}`, {
+      is_activate: false,
+   });
    return data;
  } catch (error) {
    console.error("document 삭제 실패:", error);

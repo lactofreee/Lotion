@@ -11,7 +11,7 @@
       <aside id="layout__sidebar" class="layout__sidebar">
         <div id="sidebar__space-wrapper" class="sidebar__space-wrapper">
           <h2 id="sidebar__space-name" class="sidebar__space-name">
-            <a href="/">길동의 워크 스페이스</a>
+            <a href="/" data-link>길동의 워크 스페이스</a>
           </h2>
           <div id="sidebar__button--wrapper" class="sidebar__button--wrapper">
             <button
@@ -47,7 +47,7 @@
               <button id="doucument-list__dropdown--button" class="doucument-list__dropdown--button">
                 <img src="./src/asset/hover-dropdown.svg" alt="hover 드롭다운 버튼"/>
               </button>
-              <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#">hover 목록</a>
+              <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#" data-link>hover 목록</a>
               <button data-tooltip="하위 문서 추가" data-tooltip-position="bottom" id="doucument-list__create-document--button" class="doucument-list__create-document--button">
                 <img src="./src/asset/plus.svg" alt="하위 문서 추가 버튼"/>
               </button>
@@ -59,7 +59,7 @@
               <button id="doucument-list__dropdown--button" class="doucument-list__dropdown--button">
                 <img src="./src/asset/active-dropdown.svg" alt="active 드롭다운 버튼"/>
               </button>
-              <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#">active 목록</a>
+              <a id="sidebar__doucument-list--link" class="sidebar__doucument-list--link" href="#" data-link>active 목록</a>
               <button data-tooltip="하위 문서 추가" data-tooltip-position="bottom" id="doucument-list__create-document--button" class="doucument-list__create-document--button">
                 <img src="./src/asset/plus.svg" alt="하위 문서 추가 버튼"/>
               </button>
@@ -127,6 +127,7 @@
                   href="#"
                   id="breadcrumb__path--link"
                   class="breadcrumb__path--link"
+                  data-link
                   >root document</a
                 >
               </li>
@@ -141,6 +142,7 @@
                   href="#"
                   id="breadcrumb__path--link"
                   class="breadcrumb__path--link"
+                  data-link
                   >parant document</a
                 >
               </li>
@@ -155,6 +157,7 @@
                   href="#top"
                   id="breadcrumb__path--link"
                   class="breadcrumb__path--link"
+                  data-link
                   >current document</a
                 >
               </li>
